@@ -292,6 +292,155 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://lucky94.com/2019/02/01/flex-basis与width在布局中的作用/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="神经叨">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/upload/my_face.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="神经叨的小栈">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/02/01/flex-basis与width在布局中的作用/" itemprop="url">flex-basis与width在布局中的作用</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-01T21:30:45+08:00">
+                2019-02-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/css/" itemprop="url" rel="index">
+                    <span itemprop="name">css</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="错误场景"><a href="#错误场景" class="headerlink" title="错误场景"></a>错误场景</h3><p>今天在切图的时候，发现自己的按钮怎么都无法在右侧对齐<br>如图<img src="https://user-gold-cdn.xitu.io/2019/1/29/16899a44bcc4c704?w=530&amp;h=391&amp;f=png&amp;s=16825" alt="如图"><br>html的结构如下<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>手机号<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">placeholder</span>=<span class="string">"请输入注册手机号"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>验证码<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">placeholder</span>=<span class="string">"请输入验证码"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"check-code unable"</span>&gt;</span>获取验证码<span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>css为flex布局，左侧文字flex-basis固定宽度，中间的input宽度auto自动grow；右侧验证码flex-basis固定宽度<br>在不加验证码的情况下，正常显示，加入验证码以后<br><figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">li</span> &#123;  <span class="comment">// 每行的样式</span></span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">height</span>: .<span class="number">52rem</span>;</span><br><span class="line">  <span class="attribute">margin-left</span>: .<span class="number">16rem</span>;</span><br><span class="line">  <span class="attribute">padding-right</span>: .<span class="number">16rem</span>;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">16px</span>;</span><br><span class="line">  <span class="attribute">justify-content</span>: space-between;</span><br><span class="line">  <span class="attribute">align-items</span>: center;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#333</span>;</span><br><span class="line">  <span class="attribute">border-bottom</span>: solid <span class="number">1px</span> <span class="number">#eee</span>;</span><br><span class="line">  <span class="selector-tag">span</span> &#123;</span><br><span class="line">    <span class="attribute">flex</span>: <span class="number">0</span> <span class="number">0</span> .<span class="number">9rem</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-tag">input</span> &#123;  <span class="comment">// 输入框</span></span><br><span class="line">    <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">16px</span>;</span><br><span class="line">    <span class="attribute">flex</span>: <span class="number">1</span> <span class="number">0</span> auto;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-class">.check-code</span> &#123;  <span class="comment">// 验证码</span></span><br><span class="line">    <span class="attribute">border</span>: solid <span class="number">1px</span> <span class="number">#E31335</span>;</span><br><span class="line">    <span class="attribute">flex</span>: <span class="number">0</span> <span class="number">0</span> .<span class="number">9rem</span>;</span><br><span class="line">    <span class="attribute">text-align</span>: center;</span><br><span class="line">    <span class="attribute">height</span>: .<span class="number">24rem</span>;</span><br><span class="line">    <span class="attribute">line-height</span>: .<span class="number">24rem</span>;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#E31335</span>;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">12px</span>;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">3px</span>;</span><br><span class="line">    &amp;<span class="selector-class">.unable</span> &#123;</span><br><span class="line">      <span class="attribute">color</span>: <span class="number">#C1C2C2</span>;</span><br><span class="line">      <span class="attribute">border</span>: solid <span class="number">1px</span> <span class="number">#C1C2C2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="解决思路"><a href="#解决思路" class="headerlink" title="解决思路"></a>解决思路</h3><p>正常来说，验证码这块里是不会伸展的；而input有定义了<code>flex: 1 0 auto;</code>说明input会自动伸展占据当前盒子中剩余的空间。<br>但是现在不仅占据了盒子剩余的空间，甚至<strong>超出</strong>了剩余的空间；验证码被挤到了盒子外边。<br>所以我想到的是宽度这块出现了问题，在布局中，左边文字和右边的验证码宽度都是固定的，所以最后可能出现问题的是input的宽度；这里跟input宽度相关的便是flex-basis  </p>
+<p><strong>flex-basis</strong></p>
+<p>flex-basis 指定了 flex 元素在主轴方向上的初始大小。如果不使用 box-sizing 来改变盒模型的话，那么这个属性就决定了 flex 元素的内容盒（content-box）的宽或者高（取决于主轴的方向）的尺寸大小。即  </p>
+<p><strong>如果没有设置flex-basis属性，那么flex-basis的大小就是项目的width属性的大小</strong><br><strong>如果没有设置width属性，那么flex-basis的大小就是项目内容(content)的大小</strong>  </p>
+<p>而当前我们的input并没有定义明确的宽度；所以参照的是默认的宽度；<br><img src="https://user-gold-cdn.xitu.io/2019/2/1/168a929d2accfe15?w=476&amp;h=295&amp;f=png&amp;s=12144" alt="如图"><br>然后，我们给input定义一个具体的宽度，便可解决（值不可过大）如：<code>width: 100px;</code></p>
+<p>更多关于flex-basis和width的区别和联系，可以参考<br><a href="https://gedd.ski/post/the-difference-between-width-and-flex-basis/" target="_blank" rel="noopener">https://gedd.ski/post/the-difference-between-width-and-flex-basis/</a><br>或者翻译版<br><a href="https://www.jianshu.com/p/17b1b445ecd4" target="_blank" rel="noopener">https://www.jianshu.com/p/17b1b445ecd4</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://lucky94.com/2019/01/24/vuex中modules的使用场景和注意事项/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -502,7 +651,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -513,7 +662,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -524,7 +673,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
