@@ -302,6 +302,195 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://lucky94.com/2019/04/10/20190410/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="神经叨">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/upload/my_face.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="神经叨的小栈">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/10/20190410/" itemprop="url">告别原生，打造自己的topBar</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-10T13:27:18+08:00">
+                2019-04-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>前段时间项目忙到一半，产品突然说h5页面要加个top-bar（之前说好的混合开发呢）。WFT，项目做到了一半，突然要加这个；<br>看了下设计图，大概是这样的<img src="https://user-gold-cdn.xitu.io/2019/4/8/169fd0021d0c506e?w=376&amp;h=330&amp;f=jpeg&amp;s=8674" alt="img"><br>经过认真分析，总结出了几种制作top-bar的方法；</p>
+<h2 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h2><p>直接在view-router外添加，在路由处配置是否显示该top-bar即可<br>路由配置<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="attr">path</span>: <span class="string">'xxx'</span>, <span class="attr">name</span>: <span class="string">'xxx'</span>, <span class="attr">component</span>: xxx, <span class="attr">meta</span>: &#123; <span class="attr">title</span>: <span class="string">'xxxxx'</span>, <span class="attr">topBar</span>: <span class="literal">false</span> &#125; &#125; <span class="comment">// topBar 为false则不显示</span></span><br><span class="line"><span class="string">`</span></span><br></pre></td></tr></table></figure></p>
+<p>top-bar组件大致如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=&quot;top-bar&quot; v-if=&quot;$route.meta.topBar !== false&quot;&gt;</span><br><span class="line">    &#123;&#123;$route.meta.title&#125;&#125;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  name: &apos;topBar&apos;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;style lang=&quot;sass&quot; scoped&gt;</span><br><span class="line"></span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure></p>
+<p>然后在app.vue内引入TopBar组件<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div id=<span class="string">"app"</span>&gt;</span><br><span class="line">    &lt;top-bar&gt;&lt;/top-bar&gt;</span><br><span class="line">    &lt;router-view class="container"&gt;&lt;/router-view&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line"><span class="keyword">import</span> TopBar <span class="keyword">from</span> <span class="string">'@/components/common/TopBar'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  name: <span class="string">'App'</span>,</span><br><span class="line">  components: &#123;</span><br><span class="line">    TopBar</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>优点</strong></p>
+<ul>
+<li>直接在vue入口配置，直观</li>
+<li>通过路由传参控制其显示隐藏，配置简单</li>
+<li>当前项目代码改动小</li>
+</ul>
+<p><strong>缺点</strong></p>
+<ul>
+<li>位置相对固定，不能放在router-view，会被router-view内的组件覆盖掉</li>
+<li>无法动态修改title内容（原因是meta对象为只读），若想动态修改title，需脱离vue环境来操纵dom</li>
+</ul>
+<h2 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h2><p>全局注册top-bar组件，在需要的页面调用； <code>index.js内添加</code><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> TopBar <span class="keyword">from</span> <span class="string">'@/components/common/TopBar'</span></span><br><span class="line">Vue.components(TopBar)</span><br></pre></td></tr></table></figure></p>
+<p>页面内，将meta 赋值给当前页面的 page 对象<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;top-bar&gt;&#123;&#123;page.title&#125;&#125;&lt;/top-bar&gt;</span><br></pre></td></tr></table></figure></p>
+<p>路由配置不变</p>
+<p><strong>优点</strong></p>
+<ul>
+<li>在router-view内外皆可使用</li>
+<li>可动态修改title值</li>
+<li>操作简单，新手必备</li>
+</ul>
+<p><strong>缺点</strong></p>
+<ul>
+<li>使用起来比较麻烦，每次都需要手动调用</li>
+<li>每个都页面要手动去存一个对象，用来改变title的值，重复代码多</li>
+<li>当前项目代码改动大</li>
+</ul>
+<h2 id="方法三"><a href="#方法三" class="headerlink" title="方法三"></a>方法三</h2><p>创建一个TopBar的组件构造器，需要<code>extend</code>，在每次路由跳转的时候，生成一个构造器实例；此方法的难点在于如何在路由跳转的时候，获取TopBar组件的实例；有以下注意点</p>
+<ul>
+<li>获取组件实例：这里我们通过 <code>$mount</code>方法来获取组件实例;<code>$mount</code>会在vue内调用compile方法；编译后，我们便可拿到$el;从而进行手动挂载；</li>
+<li>模板数据：在beforeRouteEnter钩子函数内获取</li>
+<li>每个page都要执行，因此将此方法放到全局的mixin内，页面加载及路由跳转的时候，自动执行</li>
+</ul>
+<p>关于$mount用法,可以参考官网 <a href="https://cn.vuejs.org/v2/api/index.html#el" target="_blank" rel="noopener">点击这里</a></p>
+<p>mixin 如下， topBarMixin.js<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">'@/style/topBar.scss'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> TopBar = <span class="literal">null</span></span><br><span class="line"><span class="keyword">let</span> App = <span class="literal">null</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> getApp = <span class="function"><span class="keyword">function</span> (<span class="params">vm</span>) </span>&#123;</span><br><span class="line">  App = vm.$el</span><br><span class="line">  <span class="keyword">return</span> App</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> clearTopBar = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (TopBar) &#123; <span class="comment">// 先清掉之前的，防止keep-alive的cache产生多个topbar</span></span><br><span class="line">    <span class="keyword">const</span> topBarElement = TopBar.$el</span><br><span class="line">    <span class="keyword">const</span> parentNode = topBarElement.parentNode</span><br><span class="line">    parentNode.removeChild(topBarElement)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> compile = <span class="function"><span class="keyword">function</span> (<span class="params">meta</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> show = (meta.topBar !== <span class="literal">false</span>)</span><br><span class="line">  <span class="keyword">const</span> title = meta.title || <span class="string">''</span></span><br><span class="line">  <span class="keyword">if</span> (!show) &#123;</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">  &#125;</span><br><span class="line">  clearTopBar() <span class="comment">// 先清除之前的TopBar</span></span><br><span class="line">  <span class="keyword">const</span> TopBarComponent = Vue.extend(&#123;</span><br><span class="line">    data () &#123;</span><br><span class="line">      <span class="keyword">return</span> &#123;</span><br><span class="line">        show,</span><br><span class="line">        title</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    template: <span class="string">`  // 模板</span></span><br><span class="line"><span class="string">    &lt;div class="xsj-top-bar" v-if="show"&gt;</span></span><br><span class="line"><span class="string">      &lt;div class="xsj-top-bar-content"&gt;</span></span><br><span class="line"><span class="string">        &lt;div class="top-bar-arrow" @click="back"&gt;</span></span><br><span class="line"><span class="string">          &lt;icon name="return" class="return"&gt;&lt;/icon&gt;</span></span><br><span class="line"><span class="string">        &lt;/div&gt;</span></span><br><span class="line"><span class="string">        &lt;div class="top-bar-title"&gt;&#123;&#123;title&#125;&#125;&lt;/div&gt;</span></span><br><span class="line"><span class="string">      &lt;/div&gt;</span></span><br><span class="line"><span class="string">    &lt;/div&gt;`</span></span><br><span class="line">  &#125;)</span><br><span class="line">  TopBar = <span class="keyword">new</span> TopBarComponent().$mount() <span class="comment">// 挂载获取实例</span></span><br><span class="line">  <span class="keyword">if</span> (App.nodeType === <span class="number">1</span>) &#123;</span><br><span class="line">    App.insertBefore(TopBar.$el, App.firstChild)</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'无法给非元素节点增加topbar'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  methods: &#123;</span><br><span class="line">    _resetTitle (title = TopBar.title) &#123; <span class="comment">// 可手动调用修改当前title的内容</span></span><br><span class="line">      <span class="keyword">this</span>.$nextTick(<span class="function"><span class="params">()</span> =&gt;</span> &#123; <span class="comment">// 在页面模板挂载上去以后，执行</span></span><br><span class="line">        <span class="keyword">if</span> (TopBar.show) &#123;</span><br><span class="line">          TopBar.title = title</span><br><span class="line">          <span class="built_in">document</span>.title = title</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  beforeRouteEnter (to, <span class="keyword">from</span>, next) &#123;</span><br><span class="line">    <span class="keyword">const</span> meta = to.meta</span><br><span class="line">    next(<span class="function"><span class="params">vm</span> =&gt;</span> &#123;</span><br><span class="line">      getApp(vm)</span><br><span class="line">      compile(meta)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>index.js 内直接调用<code>Vue.mixin(topBarMixin)</code></p>
+<p><strong>优点</strong></p>
+<ul>
+<li>通过路由传参控制其显示隐藏，配置简单</li>
+<li>当前项目代码改动小</li>
+</ul>
+<p><strong>缺点</strong></p>
+<ul>
+<li>TopBar为动态插入，所以会引起页面重排</li>
+<li>对于有keep-alive的页面，需要清除之前的TopBar，不然每次enter就会增加一个TopBar实例</li>
+</ul>
+<h2 id="方法四"><a href="#方法四" class="headerlink" title="方法四"></a>方法四</h2><p>方法四和方法三实现逻辑差不多，只不过把组件构造器换为组件实例TopBar.vue；</p>
+<ul>
+<li>组件实例 引入组件，<code>$mount</code>挂载获取实例</li>
+<li>数据方面：由于TopBar无法拿到当前route的信息，所以需要通过props传入</li>
+</ul>
+<p>TopBar.vue如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=&quot;top-bar&quot; v-if=&quot;bar.topBar !== false&quot;&gt;</span><br><span class="line">    &#123;&#123;bar.title&#125;&#125;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  name: &apos;TopBar&apos;,</span><br><span class="line">  props: &#123;</span><br><span class="line">    bar: &#123;</span><br><span class="line">      type: Object,</span><br><span class="line">      default () &#123;</span><br><span class="line">        return &#123;&#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<p>mixin 如下， topBarMixin.js文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">import Vue from &apos;vue&apos;</span><br><span class="line">import TopBar from &apos;@/components/common/TopBar&apos;  // 引入TopBar组件</span><br><span class="line"></span><br><span class="line">let App = null</span><br><span class="line"></span><br><span class="line">const getApp = function (vm) &#123;</span><br><span class="line">  App = vm.$el</span><br><span class="line">  return App</span><br><span class="line">&#125;</span><br><span class="line">export default &#123;</span><br><span class="line">  name: &apos;AddTopBar&apos;,</span><br><span class="line">  beforeRouteEnter (to, from, next) &#123;</span><br><span class="line">    next(vm =&gt; &#123;</span><br><span class="line">      getApp(vm)</span><br><span class="line">      const tb = new Vue(TopBar).$mount()  // 挂载获取实例</span><br><span class="line">      if (App.nodeType === 1) &#123;</span><br><span class="line">        clearTopBar()  // 先清掉之前的TopBar，防止keep-alive的cache产生多个topbar</span><br><span class="line">        App.insertBefore(tb.$el, App.firstChild)</span><br><span class="line">        tb._props.bar = to.meta  // 将路由数据传给top-bar</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        throw new Error(&apos;无法给非元素节点增加topbar&apos;)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>入口处调用<br><code>Vue.mixin(topBarMixin)</code><br>即可</p>
+<p><strong>优点</strong></p>
+<ul>
+<li>通过路由传参控制其显示隐藏，配置简单</li>
+<li>当前项目代码改动小</li>
+<li>可手动设置props，动态修改title</li>
+<li>组件分离出来，便于维护和扩展</li>
+</ul>
+<p><strong>缺点</strong></p>
+<ul>
+<li>TopBar为动态插入，所以会引起页面重排</li>
+<li>对于有keep-alive的页面，需要清除之前的TopBar，不然每次enter页面就会增加一个TopBar实例</li>
+</ul>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>本文涉及的知识点和细节点还是蛮多的，自己在整理的时候，也认真的消化吸收了一波；有些小知识点，写起来比较占篇幅，再者比较时间匆忙，笔者在此就一笔带过了。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://lucky94.com/2019/04/04/嫌图标插件太大？canvas自制罗盘仪/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -799,7 +988,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -821,7 +1010,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
