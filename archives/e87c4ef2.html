@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="vuex,state,">
 
 
 
@@ -86,17 +86,20 @@
 
 
 
-<meta name="description" content="个人博客，技术笔记">
-<meta name="keywords" content="web前端，JavaScript，nodeJS，html5，shell，技术笔记">
-<meta property="og:type" content="website">
-<meta property="og:title" content="神经叨的小栈">
-<meta property="og:url" content="http://lucky94.com/archives/2019/04/index.html">
+<meta name="description" content="store 拆分成 modules 过程之前的项目一直是store下面放各种js文件（index.js、state.js、getter.js、mutation-types.js、mutations.js、action.js）;如下图 123456└── store    ├── index.js          # 我们组装模块并导出 store 的地方    ├── actions.js">
+<meta name="keywords" content="vuex,state">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vuex中modules的使用场景和注意事项">
+<meta property="og:url" content="http://lucky94.com/archives/e87c4ef2.html">
 <meta property="og:site_name" content="神经叨的小栈">
-<meta property="og:description" content="个人博客，技术笔记">
+<meta property="og:description" content="store 拆分成 modules 过程之前的项目一直是store下面放各种js文件（index.js、state.js、getter.js、mutation-types.js、mutations.js、action.js）;如下图 123456└── store    ├── index.js          # 我们组装模块并导出 store 的地方    ├── actions.js">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/1/23/1687ae48f799461e?w=643&h=365&f=png&s=40004">
+<meta property="og:updated_time" content="2019-06-04T03:23:28.817Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="神经叨的小栈">
-<meta name="twitter:description" content="个人博客，技术笔记">
+<meta name="twitter:title" content="vuex中modules的使用场景和注意事项">
+<meta name="twitter:description" content="store 拆分成 modules 过程之前的项目一直是store下面放各种js文件（index.js、state.js、getter.js、mutation-types.js、mutations.js、action.js）;如下图 123456└── store    ├── index.js          # 我们组装模块并导出 store 的地方    ├── actions.js">
+<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2019/1/23/1687ae48f799461e?w=643&h=365&f=png&s=40004">
 
 
 
@@ -126,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="http://lucky94.com/archives/2019/04/">
+  <link rel="canonical" href="http://lucky94.com/archives/e87c4ef2.html">
 
 
 
 
 
-  <title>文章列表 | 神经叨的小栈</title>
+  <title>vuex中modules的使用场景和注意事项 | 神经叨的小栈</title>
   
 
 
@@ -161,7 +164,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -287,107 +290,219 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://lucky94.com/archives/e87c4ef2.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="神经叨">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/upload/my_face.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="神经叨的小栈">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">vuex中modules的使用场景和注意事项</h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-24T19:10:38+08:00">
+                2019-01-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        
-        嗯..! 目前共计 5 篇日志。 继续努力。
-      </span>
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/vue/" itemprop="url" rel="index">
+                    <span itemprop="name">vue</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
+      
 
+      
+        <h2 id="store-拆分成-modules-过程"><a href="#store-拆分成-modules-过程" class="headerlink" title="store 拆分成 modules 过程"></a>store 拆分成 modules 过程</h2><p>之前的项目一直是store下面放各种js文件（index.js、state.js、getter.js、mutation-types.js、mutations.js、action.js）;<br>如下图</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">└── store</span><br><span class="line">    ├── index.js          <span class="comment"># 我们组装模块并导出 store 的地方</span></span><br><span class="line">    ├── actions.js        <span class="comment"># 根级别的 action</span></span><br><span class="line">    ├── mutations.js      <span class="comment"># 根级别的 mutation</span></span><br><span class="line">    ├── state.js          <span class="comment"># 根级别的 state</span></span><br><span class="line">    └── getter.js</span><br></pre></td></tr></table></figure>
+<p>使用单一的状态树，应用的所有状态都会集中在一个比较大的对象上面，随着项目需求的不断增加，状态树也会变得越来越臃肿，增加了状态树维护的复杂度,而且代码变得沉长；因此我们需要modules来为我们的状态树分隔成不同的模块，每个模块拥有自己的state，getters，mutations，actions；而且允许每个module里面嵌套子module；如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">└── store</span><br><span class="line">    ├── index.js          <span class="comment"># 我们组装模块并导出 store 的地方</span></span><br><span class="line">    ├── actions.js        <span class="comment"># 根级别的 action</span></span><br><span class="line">    ├── mutations.js      <span class="comment"># 根级别的 mutation</span></span><br><span class="line">    ├── state.js          <span class="comment"># 根级别的 state</span></span><br><span class="line">    └── modules</span><br><span class="line">        ├── module1.js   <span class="comment"># 模块1的state树</span></span><br><span class="line">        └── module2.js   <span class="comment"># 模块2的state树</span></span><br></pre></td></tr></table></figure>
+<p>模块module1.js内部的代码结构如下<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; WIDTH_ADD &#125; <span class="keyword">from</span> <span class="string">'@/store/mutation-types.js'</span>  <span class="comment">// 引入事件类型</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    namespaced: <span class="literal">true</span>,</span><br><span class="line">    state: &#123;</span><br><span class="line">        width: <span class="number">100</span>,</span><br><span class="line">        height: <span class="number">50</span></span><br><span class="line">    &#125;,</span><br><span class="line">    getters: &#123;</span><br><span class="line">        modulegGetWidth(state, getters, rootState) &#123;</span><br><span class="line">            <span class="keyword">return</span> state.width</span><br><span class="line">        &#125;,</span><br><span class="line">        modulegetHeight(state, getters, rootState) &#123;</span><br><span class="line">            <span class="keyword">return</span> state.height</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    mutations: &#123;</span><br><span class="line">        [WIDTH_ADD](state) &#123;   <span class="comment">// 使用常量替代 Mutation 事件类型</span></span><br><span class="line">            <span class="keyword">return</span> state.width++</span><br><span class="line">        &#125;,</span><br><span class="line">        addHeight(state) &#123;    <span class="comment">// 不使用常量</span></span><br><span class="line">            <span class="keyword">return</span> state.height++</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    actions: &#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>注册到根state。<br><code>index.js</code>如下<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> state <span class="keyword">from</span> <span class="string">'./state'</span></span><br><span class="line"><span class="keyword">import</span> getters <span class="keyword">from</span> <span class="string">'./getters'</span></span><br><span class="line"><span class="keyword">import</span> mutations <span class="keyword">from</span> <span class="string">'./mutations'</span></span><br><span class="line"><span class="keyword">import</span> actions <span class="keyword">from</span> <span class="string">'./actions'</span></span><br><span class="line"><span class="keyword">import</span> module1 <span class="keyword">from</span> <span class="string">'./modules/module1.js'</span>  <span class="comment">// 引入module1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    state,</span><br><span class="line">    getters,</span><br><span class="line">    mutations,</span><br><span class="line">    actions,</span><br><span class="line">    modules: &#123;</span><br><span class="line">        module1  <span class="comment">// 注册完成</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在组件内打印state。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="keyword">this</span>.$store.state)</span><br></pre></td></tr></table></figure></p>
+<p>如图<br><img src="https://user-gold-cdn.xitu.io/2019/1/23/1687ae48f799461e?w=643&amp;h=365&amp;f=png&amp;s=40004" alt="Alt text"><br>由上图，可以看到，module1已经被我们添加到了当前的store.state内;</p>
+<p><strong>需要注意的</strong></p>
+<ol>
+<li>Vuex在组件中computed中使用的时候，计算属性不能和state的数据项同名（同名了也不会报错，就是获取不了数据了）</li>
+<li>有一点值得注意的是：当我们在组件的计算属性中使用module里面的getters的时候,计算属性不和state的数据项同名这条规则貌似不生效，具体原因还不知道，如果有知道的大佬帮忙指点一下</li>
+<li>默认情况下，没有设置命名空间的时候，模块内部的 action、mutation 和 getter 是(除了state)注册在全局命名空间的（如果有重名就会报错 [vuex] duplicate getter key: [method]）——这样使得多个模块能够对同一 mutation 或 action 作出响应。</li>
+</ol>
+<p>解决方法是加命名空间 <code>namespaced: true</code></p>
+<p><strong>如何在页面里面引用module</strong></p>
+<ol>
+<li>在modules内的每个模块加入命名空间  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">namespaced: <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>vue文件内也可引入createNamespacedHelpers  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; createNamespacedHelpers &#125; <span class="keyword">from</span> <span class="string">'vuex'</span></span><br><span class="line"><span class="keyword">const</span> &#123; mapState, mapActions &#125; = createNamespacedHelpers(<span class="string">'mudole1'</span>)</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>注册到组件中<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; mapState, mapMutations &#125; <span class="keyword">from</span> <span class="string">"vuex"</span></span><br><span class="line">computed: &#123;</span><br><span class="line">    ...mapState(<span class="string">'module1'</span>, &#123;</span><br><span class="line">        width: <span class="function"><span class="params">state</span> =&gt;</span> state.width,  <span class="comment">// 关联, 此处的state 为 module1/state</span></span><br><span class="line">        height: <span class="function"><span class="params">state</span> =&gt;</span> state.height</span><br><span class="line">    &#125;)</span><br><span class="line">    &#125;,</span><br><span class="line">methods: &#123;</span><br><span class="line">    ...mapMutations(<span class="string">'module1'</span>, &#123;  <span class="comment">// 命名空间module1</span></span><br><span class="line">        widthAdd: <span class="string">'WIDTH_ADD'</span>,  <span class="comment">// 通过mutation-types.js</span></span><br><span class="line">        addHeight: <span class="string">'addHeight'</span>  <span class="comment">// 直接加在mutations上面的方法</span></span><br><span class="line">    &#125;),</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><strong>如何在模块中访问全局内容？</strong>  </p>
+<p>如果你希望使用全局 state 和 getter，rootState 和 rootGetter 会作为第三和第四参数传入 getter，也会通过 context 对象的属性传入 action。</p>
+<p>若需要在全局命名空间内分发 action 或提交 mutation，将 <code>{ root: true }</code> 作为第三参数传给 dispatch 或 commit 即可。<br>其实这块，作者在文档中已经说明的很清楚了，具体的链接：<br><a href="https://vuex.vuejs.org/zh/guide/modules.html#%E5%9C%A8%E5%B8%A6%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4%E7%9A%84%E6%A8%A1%E5%9D%97%E5%86%85%E8%AE%BF%E9%97%AE%E5%85%A8%E5%B1%80%E5%86%85%E5%AE%B9%EF%BC%88global-assets%EF%BC%89" target="_blank" rel="noopener">详细链接</a></p>
+<p><strong>划分模块的好处</strong>  </p>
+<ul>
+<li>state更为容易管理，尤其在团队人数多的时候，自己负责自己的state，既保证store了完整的状态树，又避免了相互之间的state冲突</li>
+<li>不管是命名，或是操作 state 都会变得更加扁平和直观</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/vuex/" rel="tag"># vuex</a>
+          
+            <a href="/tags/state/" rel="tag"># state</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
         
-        
+
         
 
         
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2019">2019</h1>
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
           </div>
         
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/archives/44280f0.html" itemprop="url">
-              
-                <span itemprop="name">告别原生，打造自己的topBar</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-10T13:27:18+08:00" content="2019-04-10">
-          04-10
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
+        </div>
+      
       
 
-        
-        
-        
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
 
-        
-        
+          <span class="post-nav-divider"></span>
 
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/archives/153ece57.html" itemprop="url">
-              
-                <span itemprop="name">嫌图标插件太大？canvas自制罗盘仪</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-04T10:50:48+08:00" content="2019-04-04">
-          04-04
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/archives/923c664b.html" rel="prev" title="flex-basis与width在布局中的作用">
+                flex-basis与width在布局中的作用 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
       
 
-    </div>
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -395,6 +510,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -415,8 +534,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -494,6 +622,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#store-拆分成-modules-过程"><span class="nav-number">1.</span> <span class="nav-text">store 拆分成 modules 过程</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -630,6 +774,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
